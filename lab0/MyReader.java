@@ -3,32 +3,22 @@ import java.lang.*; // импорт полезностей 2 (IsLetterOrDigit м
 
 // класс, который открывает файл и может возвращать слова
 
-// implements AutoCloseable наследование или вроде того интерфейса, от которого наследуются штуки с "автодеструктором"
-// теперь надо переопределить метод close и он вызовется когда ресурс не будет нужен...
-public class MyReader implements AutoCloseable{ // изначально Reader, но такой класс уже есть в java?
+public class MyReader implements AutoCloseable{ 
     private Reader reader = null;
-    // ну да вот он класс для ввода символов
     // я же верно понимаю тут перед всем надо ставить уровень приватности?
 
      public MyReader(String filename){ // конструктор
-        try { //FileInputStream - класс читатель байтов файла
+        try { //FileInputStream - класс читатель байтов файла теперь можно снова вкладывать друг в друга
             this.reader = new InputStreamReader(new FileInputStream(filename));// InputStreamReader - класс переводчик байтов в символы
             // Везде ли нужен this?
-            /* Подобное было в задании... задание файла может выдать исключение, и, похоже, его надо ловить,
-        а не просто потом проверить открылось оно или нет, а теперь оно само закроется всё */
-            //А что надо делать ещё в конструкторе кроме создания?
         }
         catch (IOException e){
-            /* IOException — базовый класс для исключений,
-        которые возникают при работе с файлами, каталогами и потоками.
-        Ловим исключение открытия файла*/
             System.err.println("Error while reading file: " + e.getLocalizedMessage());
-            // вывод ошибок в ошибочный поток?
         }
     }
 
     public String getWord(){ // метод отдающий слова
-         try { // я так понимаю вокруг любой работы с файлами надо писать try catch
+         try {
              char[] symvol = new char[1];
              int coutOfSymvols = this.reader.read(symvol); // если -1 выдаст значит конец потока, а иначе даёт количество символов считанных
              while (!Character.isLetterOrDigit(symvol[0]) && coutOfSymvols >-1) { // идём по массиву пока не найдём слово
@@ -50,6 +40,6 @@ public class MyReader implements AutoCloseable{ // изначально Reader, 
 
     @Override
     public void close() throws IOException {
-        if (reader != null) reader.close(); //похоже одну строчку после условия можно и так написать без {}
+        if (reader != null) reader.close();
     }
 }
