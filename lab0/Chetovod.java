@@ -21,9 +21,10 @@ public class Chetovod {
     public Map.Entry<String, Integer> getBigWord() { //возвращает самое частое слово и сколько раз оно встретилось
         Map.Entry<String, Integer> bigSlovo = null;
         for (Map.Entry<String, Integer> chosenWord : skolkoSlov.entrySet()){
-            if (chosenWord.getValue() > bigSlovo.getValue()) bigSlovo = chosenWord;
+            if (bigSlovo == null || chosenWord.getValue() > bigSlovo.getValue()) bigSlovo = chosenWord;
         }
-        skolkoSlov.remove(bigSlovo);
+        if (bigSlovo == null) return null;
+        skolkoSlov.remove(bigSlovo.getKey());
         return bigSlovo;
     }
 
