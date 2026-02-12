@@ -16,9 +16,8 @@ public class Chetovod {
     } // берёт значение по ключу если есть или 0 прибавляет 1 и записывает по тому же ключу, значит заменяет?
 
     // Map.Entry<String, Integer> тип пары,
-    //часть множества .entrySet(), которое делает из map множетсво пар ключ и значение,
-    // а не доступ по ключу...
-    public Map.Entry<String, Integer> getBigWord() { //возвращает самое частое слово и сколько раз оно встретилось
+    //часть множества .entrySet(), которое делает из map множетсво пар ключ и значение, а не доступ по ключу...
+    public Map.Entry<String, Integer> getBigWord() { //возвращает самое частое слово и сколько раз оно встретилось и удаляет его
         Map.Entry<String, Integer> bigSlovo = null;
         for (Map.Entry<String, Integer> chosenWord : skolkoSlov.entrySet()){
             if (bigSlovo == null || chosenWord.getValue() > bigSlovo.getValue()) bigSlovo = chosenWord;
