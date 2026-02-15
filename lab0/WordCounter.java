@@ -1,7 +1,7 @@
 import java.util.HashMap;
 import java.util.Map;
 
-// класс, который считает слова, а затем может выдать самое большое (несколько раз...)
+// класс, который считает слова, а затем может выдать самое частовстречаемое
 
 public class WordCounter {
     private Map<String, Integer> countOfWords;
@@ -16,10 +16,7 @@ public class WordCounter {
         countOfWords.put(word, countOfWords.getOrDefault(word, 0) + 1);
     } // берёт значение по ключу если есть или 0, прибавляет 1 и записывает по тому же ключу, значит заменяет...
 
-    // Map.Entry<String, Integer> тип пары,
-    //часть множества .entrySet(), которое делает из map множетсво пар ключ и значение,
-    // а не доступ по ключу...
-    public Map.Entry<String, Integer> getLongestWord() { //возвращает самое частое слово и сколько раз оно встретилось
+    public Map.Entry<String, Integer> getLongestWord() {
         Map.Entry<String, Integer> longestWord = null;
         for (Map.Entry<String, Integer> chosenWord : countOfWords.entrySet()){
             if (longestWord == null || chosenWord.getValue() > longestWord.getValue()) longestWord = chosenWord;
