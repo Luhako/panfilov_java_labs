@@ -31,7 +31,7 @@ public class WordReader implements AutoCloseable{
                  word += symbol[0];
                  countOfSymbols = reader.read(symbol);
              }
-             return word;
+             return word.toLowerCase();
          }
          catch (IOException e){
              System.err.println("Error while reading file: " + e.getLocalizedMessage());
