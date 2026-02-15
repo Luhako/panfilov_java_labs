@@ -12,7 +12,7 @@ public class CSVWriter implements AutoCloseable{
     public CSVWriter(int WordsAtAll) {
         this.WordsAtAll = WordsAtAll;
         try{
-            writer = new FileWriter("output.txt", false);
+            writer = new FileWriter("output.csv", false);
         }
         catch (IOException e){
             System.err.println("Error while writing file: " + e.getLocalizedMessage());
@@ -22,9 +22,9 @@ public class CSVWriter implements AutoCloseable{
     public void write(Map.Entry<String, Integer> wordAndFrequency){ 
         try { 
             writer.write(wordAndFrequency.getKey());
-            writer.write(" ");
+            writer.write(", ");
             writer.write("" + wordAndFrequency.getValue());
-            writer.write(" ");
+            writer.write(", ");
             writer.write("" + wordAndFrequency.getValue()/ WordsAtAll);
             writer.write("\n");
             writer.flush(); 
